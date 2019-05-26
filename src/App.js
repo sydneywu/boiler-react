@@ -6,14 +6,15 @@ import { connect } from "react-redux";
 
 class App extends Component {
     render() {
-        const { fetching, dog, onRequestDog, error } = this.props;
-
+        const { fetching, dog, onRequestDog, onRequestMessage, error } = this.props;
         return (
             <div className="App">
                 <header className="App-header">
                     <img src={dog || logo} className="App-logo" alt="logo" />
                     <h1 className="App-title">Welcome to Dog Saga</h1>
                 </header>
+
+                <div>{JSON.stringify(this.props.message)}</div>
 
                 {dog ? (
                     <p className="App-intro">Keep clicking for new dogs</p>
@@ -35,16 +36,16 @@ class App extends Component {
 }
 
 const mapStateToProps = state => {
+    let {messageReducer} = state
     return {
-        fetching: state.fetching,
-        dog: state.dog,
-        error: state.error
+        message: messageReducer.message,
     };
 };
 
 const mapDispatchToProps = dispatch => {
     return {
-        onRequestDog: () => dispatch({ type: "API_CALL_REQUEST" })
+        onRequestDog: () => dispatch({ type: "API_MESSAGE_REQUEST" }),
+        onRequestMessage: () => dispatch({ type: "API_MESSAGE_REQUEST" })
     };
 };
 
