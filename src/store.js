@@ -1,10 +1,10 @@
 import {reducer} from './reducers'
 import createSagaMiddleware from "redux-saga";
-import rootSaga from "./ducks/sagas";
-import rootReducer from "./ducks/root";
-import {watcherSaga} from "./ducks/sagas.js";
+import rootSaga from "./redux/sagas/rootSagas";
+import rootReducer from "./redux/rootReducer";
+import {watcherSaga} from "./redux/sagas/rootSagas.js";
 import { createStore, applyMiddleware, compose } from "redux";
-import { watcherMessage } from "./ducks/message.js";
+import { watcherMessage } from "./redux/Ducks/messageDuck.js";
 
 const sagaMiddleware = createSagaMiddleware();
 
